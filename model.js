@@ -6,9 +6,6 @@ class Form {
         this.couleur = couleur;
         this.epaisseur = epaisseur;
     }
-
-
-
 }
 class Rectangle extends Form{
 
