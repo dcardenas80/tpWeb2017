@@ -13,22 +13,27 @@ function DnD(canvas, interactor) {
   
 	// Developper les 3 fonctions gérant les événements
    self.onPressed = function(evt){
-     isPressed = true;
-     console.log("isPressed: "+isPressed);
+     self.isPressed = true;
+     console.log("isPressed: "+self.isPressed);
+     self.xBeginPosition =getMousePosition(canvas,evt).x;
+     self.yFinalPosition = getMousePosition(canvas,evt).y;
+     self.interactor.onInteractionStart(this);
    }
    self.onMove = function(evt){
-    if (isPressed) {
-       self.xBeginPosition = self.xFinalPosition;
-       self.yBeginPosition = self.yBeginPosition;
+    if (self.isPressed) {
+
        self.xFinalPosition = getMousePosition(canvas,evt).x;
        self.yFinalPosition = getMousePosition(canvas,evt).y;
        console.log("Begin Positions X: " + self.xBeginPosition + "Y: "+self.yBeginPosition);
        console.log("Final Positions X: " + self.xFinalPosition + "Y: "+self.yFinalPosition);
+      self.interactor.onInteractionUpdate(this);
     }
+   
    }
    self.onReleased = function(evt){
-      isPressed = false;
-      console.log("isPressed: "+isPressed);
+      self.isPressed = false;
+      console.log("isPressed: "+self.isPressed);
+      self.interactor.onInteractionEnd(this);
    }
   // Associer les fonctions précédentes aux évènements du canvas.
   canvas.addEventListener('mousedown', self.onPressed, false);

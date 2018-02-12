@@ -12,11 +12,12 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);  // now fill the canvas
 /////
 
 // Code temporaire pour tester l'affiche de la vue
-//var rec = new Rectangle(10, 20, 50, 100, 5, '#00CCC0');
-//rec.paint(ctx);
-//var ligne = new Rectangle(10, 20, 50, 100, 5, '#00CCC0');
-//ligne.paint(ctx);
+var ligne = new Line("#000", 2, 25, 103, 746, 409);
+ ligne.paint(ctx);
+ var rec = new Rectangle("#F00", 5, 10, 60, 214, 124);
+ rec.paint(ctx);
 // tester également Dessin.
+////
 ////
 
 // Code final à utiliser pour manipuler Pencil.
