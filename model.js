@@ -24,6 +24,7 @@ class Rectangle extends Form{
         };
         this.largeur = largeur;
         this.hauteur = hauteur;
+        this.formType = "Rectangle";
     }
 
     get getPointX(){
@@ -38,6 +39,15 @@ class Rectangle extends Form{
     get getHauteur(){
         return this.hauteur;
     }
+     setLargeur(lar){
+        this.largeur = lar;
+    }
+     setHauteur(hau){
+        this.hauteur = hau;
+    }
+    get getType() {
+        return "Rectangle";
+    }
 }
 class Line extends Form{
     constructor(couleur, epaisseur,xBegin,yBegin,xFinal,yFinal) {
@@ -50,6 +60,7 @@ class Line extends Form{
             x : xFinal,
             y : yFinal
         }
+        this.formType = "Line";
     
     }
 
@@ -65,6 +76,9 @@ class Line extends Form{
     get getYFinal(){
         return this.pointY.y;
     }
+    get getType() {
+        return "Line";
+    }
 }
 function Drawing () {
     this.forms = new Array();
@@ -76,5 +90,10 @@ function Drawing () {
     this.addShape = function(form) {
         this.forms.push(form);
     }.bind(this);
+    this.removeForm = function(index){
+        this.forms.splice(index, 1);
+    }.bind(this);
+
+
 }
 // N'oubliez pas l'héritage !

@@ -4,41 +4,41 @@ var canvas = document.getElementById('myCanvas');
 // L'interacteur viendra dans un second temps donc ne vous en souciez pas au départ.
 function DnD(canvas, interactor) {
   // Définir ici les attributs de la 'classe'
-  var self = this;
-  self.xBeginPosition = 0;
-  self.yBeginPosition = 0;
-  self.xFinalPosition = 0;
-  self.yFinalPosition = 0;
-  self.isPressed = false;
+ 
+  this.xBeginPosition = 0;
+  this.yBeginPosition = 0;
+  this.xFinalPosition = 0;
+  this.yFinalPosition = 0;
+  this.isPressed = false;
   
 	// Developper les 3 fonctions gérant les événements
-   self.onPressed = function(evt){
-     self.isPressed = true;
-     console.log("isPressed: "+self.isPressed);
-     self.xBeginPosition =getMousePosition(canvas,evt).x;
-     self.yFinalPosition = getMousePosition(canvas,evt).y;
-     self.interactor.onInteractionStart(this);
+   this.onPressed = function(evt){
+     this.isPressed = true;
+     this.xBeginPosition =getMousePosition(canvas,evt).x;
+     this.yBeginPosition = getMousePosition(canvas,evt).y;
+     console.log();
+     interactor.onInteractionStart(this);
    }
-   self.onMove = function(evt){
-    if (self.isPressed) {
+   this.onMove = function(evt){
+    if (this.isPressed) {
 
-       self.xFinalPosition = getMousePosition(canvas,evt).x;
-       self.yFinalPosition = getMousePosition(canvas,evt).y;
-       console.log("Begin Positions X: " + self.xBeginPosition + "Y: "+self.yBeginPosition);
-       console.log("Final Positions X: " + self.xFinalPosition + "Y: "+self.yFinalPosition);
-      self.interactor.onInteractionUpdate(this);
+       this.xFinalPosition = getMousePosition(canvas,evt).x;
+       this.yFinalPosition = getMousePosition(canvas,evt).y;
+       console.log("Begin Positions X: " + this.xBeginPosition + "Y: "+this.yBeginPosition);
+       console.log("Final Positions X: " + this.xFinalPosition + "Y: "+this.yFinalPosition);
+      interactor.onInteractionUpdate(this);
     }
    
    }
-   self.onReleased = function(evt){
-      self.isPressed = false;
-      console.log("isPressed: "+self.isPressed);
-      self.interactor.onInteractionEnd(this);
+   this.onReleased = function(evt){
+    this.isPressed = false;
+      console.log("isPressed: "+this.isPressed);
+      interactor.onInteractionEnd(this);
    }
   // Associer les fonctions précédentes aux évènements du canvas.
-  canvas.addEventListener('mousedown', self.onPressed, false);
-  canvas.addEventListener('mousemove',self.onMove, false);
-  canvas.addEventListener('mouseup', self.onReleased, false);
+  canvas.addEventListener('mousedown', this.onPressed, false);
+  canvas.addEventListener('mousemove',this.onMove, false);
+  canvas.addEventListener('mouseup', this.onReleased, false);
 };
 
 // Place le point de l'événement evt relativement à la position du canvas.
